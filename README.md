@@ -1,2 +1,3 @@
 # django-twitter
-# This is the first file that I am gonna clone frome my repo
+# This is the main branch of my Django Twitter Backend Project
+
