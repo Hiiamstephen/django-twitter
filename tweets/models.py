@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from utils.time_helpers import utc_now
 
+
 class Tweet(models.Model):
 
     user = models.ForeignKey(
@@ -9,10 +10,15 @@ class Tweet(models.Model):
         on_delete=models.SET_NULL,
         null=True,
         help_text='who posts the tweet',
-
     )
     content = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    # create composite index
+    class Meta:
+        index_together = (('user', 'created_at'), )
+        ordering = ('user', '-created_at')
+
 
 
     # # create time each time of update
